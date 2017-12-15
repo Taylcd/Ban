@@ -14,6 +14,8 @@ commands:
   unban-ip: pardon-ip
   banlist: banlist
   mute: mute
+  unmute: unmute
+  mutelist: mutelist
 
 # Enable if you're overriding default command names
 override-default-commands: true
