@@ -48,7 +48,7 @@ class Ban extends PluginBase{
     public function getMessage($key, ...$replacement) : string{
         if(!$message = $this->lang->getNested($key)){
             if($message = (new Config($this->getFile() . "resources/lang/" . $this->getConfig()->get("lang", "eng") . ".yml", Config::YAML))->getNested($key)){
-                $this->lang->set($key, $message);
+                $this->lang->setNested($key, $message);
                 $this->lang->save();
             } else {
                 $this->getLogger()->info($message);
