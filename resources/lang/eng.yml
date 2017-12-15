@@ -1,0 +1,12 @@
+commands:
+  ban:
+    description: "Prevents the specified player from using this server"
+  ban-ip:
+    description: "Prevents the specified IP address from using this server"
+  pardon:
+    description: "Allows the specified player to use this server"
+  pardon-ip:
+    description: "Allows the specified IP address to use this server"
+
+console:
+  config-outdated: "Your config file was outdated and has been updated automatically, please note that all settings have been reset to default. Your original config file is renamed to config.old.yml."

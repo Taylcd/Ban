@@ -1,0 +1,11 @@
+name: Ban
+author: Taylcd
+website: https://github.com/Taylcd/Ban
+
+version: 1.0.0
+api:
+  - 2.0.0
+  - 3.0.0-ALPHA9
+  - 3.0.0-ALPHA10
+
+main: Taylcd\Ban\Ban

@@ -1,0 +1,12 @@
+commands:
+  ban:
+    description: "禁止指定的玩家使用此服务器"
+  ban-ip:
+    description: "禁止指定的 IP 地址使用此服务器"
+  pardon:
+    description: "允许指定的玩家使用此服务器"
+  pardon-ip:
+    description: "允许指定的 IP 地址使用此服务器"
+
+console:
+  config-outdated: "配置文件过期并已自动更新，所有设置已被重置为默认选项。原先的配置文件现在位于 config.old.yml"
