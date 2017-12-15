@@ -13,7 +13,7 @@ class Ban extends PluginBase{
 
     public function onLoad(){
         $this->saveDefaultConfig();
-        if(($resource = $this->getResource($lang = $this->getConfig()->get("lang", "eng"))) === null){
+        while(($resource = $this->getResource("lang/" . ($lang = $this->getConfig()->get("lang", "eng")) . ".yml")) === null){
             $this->getLogger()->warning("Language resource $lang not found, using eng as default.");
             $this->getConfig()->set("lang", "eng");
             $this->getConfig()->save();
@@ -35,13 +35,14 @@ class Ban extends PluginBase{
     }
 
     public function onEnable(){
-        if($this->getConfig()->get("override-default-commands", true)){
-            $this->getCommand("ban")->unregister($this->getServer()->getCommandMap());
-            $this->getCommand("ban-ip")->unregister($this->getServer()->getCommandMap());
-            $this->getCommand("pardon")->unregister($this->getServer()->getCommandMap());
-            $this->getCommand("pardon-ip")->unregister($this->getServer()->getCommandMap());
-        }
         $commands = $this->getConfig()->get("commands");
+        if($this->getConfig()->get("override-default-commands", true)){
+            foreach($commands as $name){
+                if(($command = $this->getServer()->getCommandMap()->getCommand($name)) !== null){
+                    $command->unregister($this->getServer()->getCommandMap());
+                }
+            }
+        }
         // TODO: register commands
     }
 
