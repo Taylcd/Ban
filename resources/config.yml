@@ -1,18 +1,19 @@
 # Don't touch it!
 config-version: 1
 
-# Supported language
+# Supported languages
 # - English(eng)
 # - Simplified Chinese(chs)
 lang: eng
 
-# The command name you want to use
+# Command names
 commands:
   ban: ban
   ban-ip: ban-ip
   unban: pardon
   unban-ip: pardon-ip
+  banlist: banlist
+  mute: mute
 
-# If enabled, default ban/pardon commands will be disabled
-# So the plugin will be able to register these commands
+# Enable if you're overriding default command names
 override-default-commands: true

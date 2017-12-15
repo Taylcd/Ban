@@ -4,6 +4,7 @@ namespace Taylcd\Ban;
 
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
+use Taylcd\Ban\exception\MessageNotFoundException;
 
 class Ban extends PluginBase{
     const CONFIG_VERSION = 1;
@@ -16,10 +17,8 @@ class Ban extends PluginBase{
         while(($resource = $this->getResource("lang/" . ($lang = $this->getConfig()->get("lang", "eng")) . ".yml")) === null){
             $this->getLogger()->warning("Language resource $lang not found, using eng as default.");
             $this->getConfig()->set("lang", "eng");
-            $this->getConfig()->save();
         }
-        $out = $this->getDataFolder() . "message.yml";
-        if(!file_exists($out)){
+        if(!file_exists($out = $this->getDataFolder() . "message.yml")){
             stream_copy_to_stream($resource, $fp = fopen($out, "wb"));
             fclose($fp);
             fclose($resource);
@@ -47,7 +46,15 @@ class Ban extends PluginBase{
     }
 
     public function getMessage($key, ...$replacement) : string{
-        $message = $this->lang->getNested($key, 'Missing message: ' . $key);
+        if(!$message = $this->lang->getNested($key)){
+            if($message = (new Config($this->getFile() . "resources/lang/" . $this->getConfig()->get("lang", "eng") . ".yml", Config::YAML))->getNested($key)){
+                $this->lang->set($key, $message);
+                $this->lang->save();
+            } else {
+                $this->getLogger()->info($message);
+                throw new MessageNotFoundException("Message $key not found.");
+            }
+        }
         foreach($replacement as $index => $value){
             $message = str_replace("%$index", $value, $message);
         }
