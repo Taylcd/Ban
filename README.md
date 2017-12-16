@@ -1,2 +1,2 @@
-# Ban
-An advanced ban plugin for PocketMine-MP.
+# BanManager
+This plugin is under heavy development!

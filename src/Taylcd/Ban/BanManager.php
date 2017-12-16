@@ -1,12 +1,12 @@
 <?php
 
-namespace Taylcd\Ban;
+namespace BanManager;
 
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
-use Taylcd\Ban\exception\MessageNotFoundException;
+use BanManager\exception\MessageNotFoundException;
 
-class Ban extends PluginBase{
+class BanManager extends PluginBase{
     const CONFIG_VERSION = 1;
 
     /** @var Config */

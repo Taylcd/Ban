@@ -1,6 +1,6 @@
 <?php
 
-namespace Taylcd\Ban\exception;
+namespace BanManager\exception;
 
 class MessageNotFoundException extends \LogicException{
 

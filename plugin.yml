@@ -1,11 +1,10 @@
-name: Ban
+main: BanManager\BanManager
+
+name: BanManager
 author: Taylcd
-website: https://github.com/Taylcd/Ban
+website: https://github.com/Taylcd/BanManager
 
 version: 1.0.0
 api:
-  - 2.0.0
   - 3.0.0-ALPHA9
   - 3.0.0-ALPHA10
-
-main: Taylcd\Ban\Ban

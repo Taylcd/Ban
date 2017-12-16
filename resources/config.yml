@@ -19,3 +19,6 @@ commands:
 
 # Enable if you're overriding default command names
 override-default-commands: true
+
+# Supported providers: YAML
+database-provider: YAML
