@@ -3,10 +3,11 @@
 namespace BanManager\event;
 
 use BanManager\utils\Ban;
+use pocketmine\event\Cancellable;
 use pocketmine\event\player\PlayerEvent;
 use pocketmine\Player;
 
-class BannedPlayerLoginEvent extends PlayerEvent {
+class BannedPlayerLoginEvent extends PlayerEvent implements Cancellable{
     /** @var Ban */
     protected $ban;
 
