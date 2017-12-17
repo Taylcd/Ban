@@ -20,7 +20,7 @@ interface DataProvider{
 
     public function getIPBan(string $ipAddress) : Ban;
 
-    public function verifyPlayerLogin(Player $player) : Ban;
+    public function verifyPlayerLogin(Player $player);
 
     public function mutePlayer(string $xuid, int $time = 0, string $reason = null);
 
@@ -33,4 +33,6 @@ interface DataProvider{
     public function blockIP(string $ipAddress, int $time = 0, string $reason = null) : int;
 
     public function close();
+
+    public function getLastVerifiedXuid(string $name);
 }

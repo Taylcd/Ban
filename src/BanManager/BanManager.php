@@ -2,6 +2,7 @@
 
 namespace BanManager;
 
+use BanManager\command\BanCommand;
 use BanManager\event\Listener;
 use BanManager\provider\DataProvider;
 use BanManager\provider\MySQLDataProvider;
@@ -50,11 +51,14 @@ class BanManager extends PluginBase{
         if($this->getConfig()->get("override-default-commands", true)){
             foreach($commands as $name){
                 if(($command = $this->getServer()->getCommandMap()->getCommand($name)) !== null){
+                    $command->setLabel("");
                     $command->unregister($this->getServer()->getCommandMap());
                 }
             }
         }
-        // TODO: register commands
+        $this->getServer()->getCommandMap()->registerAll("", [
+            new BanCommand($this)
+        ]);
 
         switch(strtolower($provider = $this->getConfig()->get("database-provider", "YAML"))){
             default:

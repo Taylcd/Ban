@@ -4,19 +4,47 @@ namespace BanManager\provider;
 
 use BanManager\utils\Ban;
 use pocketmine\Player;
+use pocketmine\utils\Config;
 
 class YAMLDataProvider implements DataProvider{
     private $dataFolder;
 
     public function __construct($dataFolder){
         $this->dataFolder = $dataFolder;
-        if(!is_dir($this->dataFolder)){
-            @mkdir($this->dataFolder);
+        foreach(["", "PlayerBans", "IPBans", "MuteBans", "XuidData", "PlayerData", "IPData"] as $folder){
+            if(!is_dir($this->dataFolder . $folder)){
+                @mkdir($this->dataFolder . $folder);
+            }
         }
     }
 
     public function processPlayerLogin(Player $player){
-        // TODO: Implement processPlayerLogin() method.
+        $name = trim(strtolower($player->getName()));
+
+        @mkdir($this->dataFolder . "XuidData/" . $name{0});
+        $data = new Config($this->dataFolder . "XuidData/" . $name{0} . "/$name.yml", Config::YAML);
+        $data->set("lastVerifiedXuid", $xuid = $player->getXuid());
+        $data->save();
+
+        @mkdir($this->dataFolder . "PlayerData/" . $folder = substr($xuid, 0, 2));
+        $data = new Config($this->dataFolder . "PlayerData/" . $folder . "/$xuid.yml", Config::YAML);
+        $usedIP = $data->get("usedIP", []);
+        if(!in_array($address = $player->getAddress(), $usedIP)){
+            array_push($usedIP, $address);
+        }
+        $data->set("usedIP", $usedIP);
+        $data->set("lastLoginTime", time());
+        $data->save();
+
+        @mkdir($this->dataFolder . "IPData/" . $folder = explode(".", $address)[0]);
+        $data = new Config($this->dataFolder . "IPData/" . $folder . "/$address.yml", Config::YAML);
+        $usedAccount = $data->get("usedAccount", []);
+        if(!in_array($xuid, $usedAccount)){
+            array_push($usedAccount, $xuid);
+        }
+        $data->set("usedAccount", $usedAccount);
+        $data->set("lastLoginTime", time());
+        $data->save();
     }
 
     public function banPlayer(string $xuid, int $time = 0, string $reason = null){
@@ -43,7 +71,7 @@ class YAMLDataProvider implements DataProvider{
         // TODO: Implement isIPBanned() method.
     }
 
-    public function verifyPlayerLogin(Player $player) : Ban{
+    public function verifyPlayerLogin(Player $player){
         // TODO: Implement verifyPlayerLogin() method.
     }
 
@@ -69,5 +97,13 @@ class YAMLDataProvider implements DataProvider{
 
     public function close(){
 
+    }
+
+    public function getLastVerifiedXuid(string $name){
+        $name = trim(strtolower($name));
+
+        @mkdir($this->dataFolder . "XuidData/" . $name{0});
+        $data = new Config($this->dataFolder . "XuidData/" . $name{0} . "/$name.yml", Config::YAML);
+        return $data->get("lastVerifiedXuid");
     }
 }

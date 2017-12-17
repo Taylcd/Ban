@@ -38,7 +38,7 @@ class MySQLDataProvider implements DataProvider{
         // TODO: Implement isIPBanned() method.
     }
 
-    public function verifyPlayerLogin(Player $player) : Ban{
+    public function verifyPlayerLogin(Player $player){
         // TODO: Implement verifyPlayerLogin() method.
     }
 
@@ -64,5 +64,9 @@ class MySQLDataProvider implements DataProvider{
 
     public function close(){
 
+    }
+
+    public function getLastVerifiedXuid(string $name){
+        // TODO: Implement getLastVerifiedXuid() method.
     }
 }

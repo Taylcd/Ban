@@ -7,6 +7,8 @@ description:
   unmute: "允许指定玩家发送聊天信息"
   banlist: "查看所有封禁的玩家及 IP 地址"
   mutelist: "查看所有禁言玩家"
+usage:
+  ban: "/ban <玩家> <时长> [理由]"
 console:
   configOutdated: "配置文件过期并已自动更新，所有设置已被重置为默认选项。原先的配置文件被重命名为 config.old.yml"
   providerNotSupported: "数据库类型 %0 当前不被支持, 默认使用 YAML"
@@ -16,3 +18,8 @@ banned:
   noExpire: "这个封禁永久有效。"
   expireTime: "这个封禁将于 %0 %1 过期。"
   reason: "附加理由: %0"
+ban:
+  playerNotFound: "无法找到玩家 %0"
+  banned: "玩家 %0(XboxUID: %1)已被封禁。\n解禁时间: %2(%3 秒后)\n理由: %4"
+  permanent-ban: "永久封禁"
+  none-reason: "无"

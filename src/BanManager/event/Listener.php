@@ -4,7 +4,7 @@ namespace BanManager\event;
 
 use BanManager\BanManager;
 use BanManager\utils\Ban;
-use pocketmine\event\player\PlayerPreLoginEvent;
+use pocketmine\event\player\PlayerLoginEvent;
 
 class Listener implements \pocketmine\event\Listener{
     /** @var BanManager */
@@ -14,7 +14,7 @@ class Listener implements \pocketmine\event\Listener{
         $this->plugin = $plugin;
     }
 
-    public function onPlayerPreLogin(PlayerPreLoginEvent $event){
+    public function onPlayerLogin(PlayerLoginEvent $event){
         /** @var Ban $ban */
         if(($ban = $this->plugin->getDataProvider()->verifyPlayerLogin($event->getPlayer())) !== null && !$ban->isExpired()){
             if($ban->getType() == Ban::BAN_TYPE_PLAYER){

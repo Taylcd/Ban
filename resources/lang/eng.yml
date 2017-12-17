@@ -7,6 +7,8 @@ description:
   unmute: "Allows the specified player to chat"
   banlist: "View all banned players and IP addresses"
   mutelist: "View all muted players"
+usage:
+  ban: "/ban <player> <time> [reason]"
 console:
   configOutdated: "Your config file was outdated and has been updated automatically, please note that all settings have been reset to default. Your original config file is renamed to config.old.yml."
   providerNotSupported: "Database provider %0 is currently not supported, using YAML as default."
@@ -16,3 +18,9 @@ banned:
   noExpire: "This ban is permanent."
   expireTime: "This ban will expire on %0 at %1"
   reason: "Reason: %0"
+ban:
+  playerNotFound: "Couldn't find player %0"
+  banned: "Player %0(XboxUID: %1) has been banned.\nExpire Date: %2\nReason: %3"
+  permanent-ban: "This ban is permanent."
+  noneReason: "None"
+  expireInSeconds: "(In %0 seconds)"
