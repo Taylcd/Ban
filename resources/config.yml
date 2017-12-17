@@ -2,6 +2,7 @@
 config-version: 1
 
 # Supported languages
+# You need to delete message.yml manually after changing language
 # - English(eng)
 # - Simplified Chinese(chs)
 lang: eng

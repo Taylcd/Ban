@@ -2,8 +2,6 @@
 
 namespace BanManager\utils;
 
-use BanManager\BanManager;
-
 class Ban{
     public const BAN_TYPE_PLAYER = 0;
     public const BAN_TYPE_IP_ADDRESS = 1;
