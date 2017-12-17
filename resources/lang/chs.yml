@@ -1,12 +1,18 @@
 description:
   ban: "禁止指定玩家使用此服务器"
-  ban-ip: "禁止指定 IP 地址使用此服务器"
+  banIp: "禁止指定 IP 地址使用此服务器"
   pardon: "允许指定玩家使用此服务器"
-  pardon-ip: "允许指定 IP 地址使用此服务器"
+  pardonIp: "允许指定 IP 地址使用此服务器"
   mute: "禁止指定玩家发送聊天信息"
   unmute: "允许指定玩家发送聊天信息"
   banlist: "查看所有封禁的玩家及 IP 地址"
   mutelist: "查看所有禁言玩家"
 console:
-  config-outdated: "配置文件过期并已自动更新，所有设置已被重置为默认选项。原先的配置文件被重命名为 config.old.yml"
-   provider-not-supported: "数据库类型 %0 当前不被支持, 默认使用 YAML"
+  configOutdated: "配置文件过期并已自动更新，所有设置已被重置为默认选项。原先的配置文件被重命名为 config.old.yml"
+  providerNotSupported: "数据库类型 %0 当前不被支持, 默认使用 YAML"
+banned:
+  player: "你的账号已经被封禁。"
+  ipAddress: "你的 IP 地址已经被封禁。"
+  noExpire: "这个封禁永久有效。"
+  expireTime: "这个封禁将于 %0 %1 过期。"
+  reason: "附加理由: %0"

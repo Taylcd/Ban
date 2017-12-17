@@ -2,6 +2,7 @@
 
 namespace BanManager\provider;
 
+use BanManager\utils\Ban;
 use pocketmine\Player;
 
 interface DataProvider{
@@ -15,15 +16,17 @@ interface DataProvider{
 
     public function unbanIP(string $ipAddress);
 
-    public function isPlayerBanned(string $xuid) : bool;
+    public function getPlayerBan(string $xuid) : Ban;
 
-    public function isIPBanned(string $ipAddress) : bool;
+    public function getIPBan(string $ipAddress) : Ban;
+
+    public function verifyPlayerLogin(Player $player) : Ban;
 
     public function mutePlayer(string $xuid, int $time = 0, string $reason = null);
 
     public function unmutePlayer(string $xuid);
 
-    public function isPlayerMuted(string $xuid) : bool;
+    public function getPlayerMuteBan(string $xuid) : Ban;
 
     public function blockPlayer(string $xuid, int $time = 0, string $reason = null) : int;
 

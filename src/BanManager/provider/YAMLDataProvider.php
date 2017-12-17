@@ -2,6 +2,7 @@
 
 namespace BanManager\provider;
 
+use BanManager\utils\Ban;
 use pocketmine\Player;
 
 class YAMLDataProvider implements DataProvider{
@@ -34,12 +35,16 @@ class YAMLDataProvider implements DataProvider{
         // TODO: Implement unbanIP() method.
     }
 
-    public function isPlayerBanned(string $xuid): bool{
+    public function getPlayerBan(string $xuid) : Ban{
         // TODO: Implement isPlayerBanned() method.
     }
 
-    public function isIPBanned(string $ipAddress): bool{
+    public function getIPBan(string $ipAddress) : Ban{
         // TODO: Implement isIPBanned() method.
+    }
+
+    public function verifyPlayerLogin(Player $player) : Ban{
+        // TODO: Implement verifyPlayerLogin() method.
     }
 
     public function mutePlayer(string $xuid, int $time = 0, string $reason = null){
@@ -50,15 +55,15 @@ class YAMLDataProvider implements DataProvider{
         // TODO: Implement unmutePlayer() method.
     }
 
-    public function isPlayerMuted(string $xuid): bool{
+    public function getPlayerMuteBan(string $xuid) : Ban{
         // TODO: Implement isPlayerMuted() method.
     }
 
-    public function blockPlayer(string $xuid, int $time = 0, string $reason = null): int{
+    public function blockPlayer(string $xuid, int $time = 0, string $reason = null) : int{
         // TODO: Implement blockPlayer() method.
     }
 
-    public function blockIP(string $ipAddress, int $time = 0, string $reason = null): int{
+    public function blockIP(string $ipAddress, int $time = 0, string $reason = null) : int{
         // TODO: Implement blockIP() method.
     }
 

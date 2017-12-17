@@ -16,10 +16,15 @@ class BanManager extends PluginBase{
     /** @var Config */
     private $lang;
 
+    /** @var BanManager */
+    private static $instance;
+
     /** @var DataProvider */
     private $dataProvider;
 
     public function onLoad(){
+        self::$instance = $this;
+
         $this->saveDefaultConfig();
         while(($resource = $this->getResource("lang/" . ($lang = $this->getConfig()->get("lang", "eng")) . ".yml")) === null){
             $this->getLogger()->warning("Language resource $lang not found, using eng as default.");
@@ -36,7 +41,7 @@ class BanManager extends PluginBase{
             rename($this->getDataFolder() . "config.yml", $this->getDataFolder() . "config.old.yml");
             $this->saveDefaultConfig();
             $this->getConfig()->reload();
-            $this->getLogger()->notice($this->getMessage("console.config-outdated"));
+            $this->getLogger()->notice($this->getMessage("console.configOutdated"));
         }
     }
 
@@ -53,7 +58,7 @@ class BanManager extends PluginBase{
 
         switch(strtolower($provider = $this->getConfig()->get("database-provider", "YAML"))){
             default:
-                $this->getLogger()->notice($this->getMessage("console.provider-not-supported", $provider));
+                $this->getLogger()->notice($this->getMessage("console.providerNotSupported", $provider));
             case "yaml":
                 $this->dataProvider = new YAMLDataProvider($this->getDataFolder() . "/data/");
                 break;
@@ -81,5 +86,9 @@ class BanManager extends PluginBase{
 
     public function getDataProvider(){
         return $this->dataProvider;
+    }
+
+    public static function getInstance() : BanManager{
+        return self::$instance;
     }
 }
