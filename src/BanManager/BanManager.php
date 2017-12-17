@@ -2,6 +2,9 @@
 
 namespace BanManager;
 
+use BanManager\provider\DataProvider;
+use BanManager\provider\MySQLDataProvider;
+use BanManager\provider\YAMLDataProvider;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use BanManager\exception\MessageNotFoundException;
@@ -11,6 +14,9 @@ class BanManager extends PluginBase{
 
     /** @var Config */
     private $lang;
+
+    /** @var DataProvider */
+    private $dataProvider;
 
     public function onLoad(){
         $this->saveDefaultConfig();
@@ -43,6 +49,16 @@ class BanManager extends PluginBase{
             }
         }
         // TODO: register commands
+
+        switch(strtolower($provider = $this->getConfig()->get("database-provider", "YAML"))){
+            default:
+                $this->getLogger()->notice($this->getMessage("console.provider-not-supported", $provider));
+            case "yaml":
+                $this->dataProvider = new YAMLDataProvider($this->getDataFolder() . "/data/");
+                break;
+            case "mysql":
+                $this->dataProvider = new MySQLDataProvider();
+        }
     }
 
     public function getMessage($key, ...$replacement) : string{
@@ -59,5 +75,9 @@ class BanManager extends PluginBase{
             $message = str_replace("%$index", $value, $message);
         }
         return $message;
+    }
+
+    public function getDataProvider(){
+        return $this->dataProvider;
     }
 }

@@ -9,3 +9,4 @@ description:
   mutelist: "查看所有禁言玩家"
 console:
   config-outdated: "配置文件过期并已自动更新，所有设置已被重置为默认选项。原先的配置文件被重命名为 config.old.yml"
+   provider-not-supported: "数据库类型 %0 当前不被支持, 默认使用 YAML"

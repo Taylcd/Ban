@@ -16,9 +16,18 @@ commands:
   mute: mute
   unmute: unmute
   mutelist: mutelist
+  block: block
+  block-ip: block-ip
 
 # Enable if you're overriding default command names
 override-default-commands: true
 
-# Supported providers: YAML
+# Supported providers: YAML, MySQL
 database-provider: YAML
+
+# mysql-settings:
+#   host: 127.0.0.1
+#   username: root
+#   password: root
+#   database: BanManager
+#   port: 3306

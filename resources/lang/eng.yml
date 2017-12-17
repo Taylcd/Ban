@@ -9,3 +9,4 @@ description:
   mutelist: "View all muted players"
 console:
   config-outdated: "Your config file was outdated and has been updated automatically, please note that all settings have been reset to default. Your original config file is renamed to config.old.yml."
+  provider-not-supported: "Database provider %0 is currently not supported, using YAML as default."

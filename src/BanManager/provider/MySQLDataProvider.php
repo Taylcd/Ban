@@ -4,14 +4,9 @@ namespace BanManager\provider;
 
 use pocketmine\Player;
 
-class YAMLDataProvider implements DataProvider{
-    private $dataFolder;
-
-    public function __construct($dataFolder){
-        $this->dataFolder = $dataFolder;
-        if(!is_dir($this->dataFolder)){
-            @mkdir($this->dataFolder);
-        }
+class MySQLDataProvider implements DataProvider{
+    public function __construct(){
+        // TODO: Implement __construct() method.
     }
 
     public function processPlayerLogin(Player $player){
@@ -63,6 +58,6 @@ class YAMLDataProvider implements DataProvider{
     }
 
     public function close(){
-
+        // TODO: Implement close() method.
     }
 }
