@@ -2,6 +2,7 @@
 
 namespace BanManager;
 
+use BanManager\event\Listener;
 use BanManager\provider\DataProvider;
 use BanManager\provider\MySQLDataProvider;
 use BanManager\provider\YAMLDataProvider;
@@ -59,6 +60,7 @@ class BanManager extends PluginBase{
             case "mysql":
                 $this->dataProvider = new MySQLDataProvider();
         }
+        $this->getServer()->getPluginManager()->registerEvents(new Listener($this), $this);
     }
 
     public function getMessage($key, ...$replacement) : string{
