@@ -66,8 +66,8 @@ class BanManager extends PluginBase{
             case "yaml":
                 $this->dataProvider = new YAMLDataProvider($this->getDataFolder() . "/data/");
                 break;
-            case "mysql":
-                $this->dataProvider = new MySQLDataProvider();
+            // case "mysql":
+                // $this->dataProvider = new MySQLDataProvider();
         }
         $this->getServer()->getPluginManager()->registerEvents(new Listener($this), $this);
     }

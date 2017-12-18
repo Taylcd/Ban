@@ -23,7 +23,8 @@ commands:
 # Enable if you're overriding default command names
 override-default-commands: true
 
-# Supported providers: YAML, MySQL
+# Supported providers: YAML
+# MySQL will be supported soon
 database-provider: YAML
 
 # mysql-settings:

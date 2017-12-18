@@ -9,6 +9,10 @@ use pocketmine\utils\Config;
 class YAMLDataProvider implements DataProvider{
     private $dataFolder;
 
+    private $banList = [];
+    private $banIpList = [];
+    private $muteList = [];
+
     public function __construct($dataFolder){
         $this->dataFolder = $dataFolder;
         foreach(["", "PlayerBans", "IPBans", "MuteBans", "XuidData", "PlayerData", "IPData"] as $folder){

@@ -3,22 +3,21 @@
 namespace BanManager\command;
 
 use BanManager\BanManager;
-use BanManager\utils\Time;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\command\utils\InvalidCommandSyntaxException;
 
-class BanCommand extends Command{
+class UnbanCommand extends Command{
     /** @var BanManager */
     private $plugin;
 
     public function __construct(BanManager $plugin){
         parent::__construct(
-            $plugin->getConfig()->getNested("commands.ban"),
-            $plugin->getMessage("description.ban"),
-            $plugin->getMessage("usage.ban")
+            $plugin->getConfig()->getNested("commands.unban"),
+            $plugin->getMessage("description.unban"),
+            $plugin->getMessage("usage.unban")
         );
-        $this->setPermission("banmanager.command.ban.player");
+        $this->setPermission("banmanager.command.unban.player");
         $this->plugin = $plugin;
     }
 
@@ -32,13 +31,11 @@ class BanCommand extends Command{
         }
 
         $name = array_shift($args);
-        $time = array_shift($args) ?? 0;
-        $reason = implode(" ", $args);
         if(!($xuid = $this->plugin->getDataProvider()->getLastVerifiedXuid($name))){
             $sender->sendMessage($this->plugin->getMessage("command.playerNotFound", $name));
         } else {
-            $this->plugin->getDataProvider()->banPlayer($xuid, $time = (strtotime(Time::format($time)) - time()), $reason);
-            $sender->sendMessage($this->plugin->getMessage("command.playerBanned", $name, $xuid, $time > 0 ? date("Y/m/d h:i", $time + time()) . $this->plugin->getMessage("command.expireInSeconds", $time) : $this->plugin->getMessage("command.permanentBan"), trim($reason) ? $reason : $this->plugin->getMessage("command.noneReason")));
+            $this->plugin->getDataProvider()->unbanPlayer($xuid);
+            $sender->sendMessage($this->plugin->getMessage("command.playerUnbanned", $name, $xuid));
         }
         return true;
     }
