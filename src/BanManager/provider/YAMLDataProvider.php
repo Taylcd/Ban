@@ -110,4 +110,16 @@ class YAMLDataProvider implements DataProvider{
         $data = new Config($this->dataFolder . "XuidData/" . $name{0} . "/$name.yml", Config::YAML);
         return $data->get("lastVerifiedXuid");
     }
+
+    public function getBanList(): array{
+        return $this->banList;
+    }
+
+    public function getBanIpList(): array{
+        return $this->banIpList;
+    }
+
+    public function getMuteList(): array{
+        return $this->muteList;
+    }
 }

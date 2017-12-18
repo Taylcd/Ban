@@ -35,4 +35,10 @@ interface DataProvider{
     public function close();
 
     public function getLastVerifiedXuid(string $name);
+
+    public function getBanList() : array;
+
+    public function getBanIpList() : array;
+
+    public function getMuteList() : array;
 }
