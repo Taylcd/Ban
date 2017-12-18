@@ -16,9 +16,9 @@ interface DataProvider{
 
     public function unbanIP(string $ipAddress);
 
-    public function getPlayerBan(string $xuid) : Ban;
+    public function getPlayerBan(string $xuid);
 
-    public function getIPBan(string $ipAddress) : Ban;
+    public function getIPBan(string $ipAddress);
 
     public function verifyPlayerLogin(Player $player);
 
@@ -26,7 +26,7 @@ interface DataProvider{
 
     public function unmutePlayer(string $xuid);
 
-    public function getPlayerMuteBan(string $xuid) : Ban;
+    public function getPlayerMuteBan(string $xuid);
 
     public function blockPlayer(string $xuid, int $time = 0, string $reason = null) : int;
 

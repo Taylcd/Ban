@@ -18,8 +18,8 @@ console:
 banned:
   player: "Your account has been banned."
   ipAddress: "Your IP address has been banned."
-  noExpire:
-  expireTime: "This ban will expire on %0 at %1""This ban is permanent."
+  noExpire: "This ban is permanent."
+  expireTime: "This ban will expire on %0 at %1"
   reason: "Reason: %0"
 command:
   playerNotFound: "Couldn't find player %0"

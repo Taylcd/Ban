@@ -36,7 +36,7 @@ class Ban{
     }
 
     public function isExpired() : bool{
-        return ($this->expireTime - time()) <= 0;
+        return $this->expireTime != 0 && ($this->expireTime - time()) <= 0;
     }
 
     public function getReason(){

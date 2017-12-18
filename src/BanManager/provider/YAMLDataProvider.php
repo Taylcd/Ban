@@ -20,6 +20,8 @@ class YAMLDataProvider implements DataProvider{
                 @mkdir($this->dataFolder . $folder);
             }
         }
+
+        // TODO: Load banlists
     }
 
     public function processPlayerLogin(Player $player){
@@ -52,43 +54,70 @@ class YAMLDataProvider implements DataProvider{
     }
 
     public function banPlayer(string $xuid, int $time = 0, string $reason = null){
-        // TODO: Implement banPlayer() method.
+        @mkdir($this->dataFolder . "PlayerBans/" . $folder = substr($xuid, 0, 2));
+        $data = new Config($this->dataFolder . "PlayerBans/" . $folder . "/$xuid.yml", Config::YAML);
+        $data->set("expireTime", $time ? $time + time() : 0);
+        $data->set("reason", $reason);
+        $data->save();
     }
 
     public function banIP(string $ipAddress, int $time = 0, string $reason = null){
-        // TODO: Implement banIP() method.
+        @mkdir($this->dataFolder . "IPBans/" . $folder = explode(".", $ipAddress)[0]);
+        $data = new Config($this->dataFolder . "IBans/" . $folder . "/$ipAddress.yml", Config::YAML);
+        $data->set("expireTime", $time ? $time + time() : 0);
+        $data->set("reason", $reason);
+        $data->save();
     }
 
     public function unbanPlayer(string $xuid){
-        // TODO: Implement unbanPlayer() method.
+        @unlink($this->dataFolder . "PlayerBans/" . substr($xuid, 0, 2) . "/$xuid.yml");
     }
 
     public function unbanIP(string $ipAddress){
-        // TODO: Implement unbanIP() method.
+        @unlink($this->dataFolder . "IBans/" . explode(".", $ipAddress)[0] . "/$ipAddress.yml");
     }
 
-    public function getPlayerBan(string $xuid) : Ban{
-        // TODO: Implement isPlayerBanned() method.
+    public function getPlayerBan(string $xuid){
+        @mkdir($this->dataFolder . "PlayerBans/" . $folder = substr($xuid, 0, 2));
+        if(file_exists($this->dataFolder . "PlayerBans/" . $folder . "/$xuid.yml")){
+            $data = new Config($this->dataFolder . "PlayerBans/" . $folder . "/$xuid.yml", Config::YAML);
+            return new Ban(Ban::BAN_TYPE_PLAYER, $xuid, $data->get("expireTime"), $data->get("reason"));
+        }
+        return null;
     }
 
-    public function getIPBan(string $ipAddress) : Ban{
-        // TODO: Implement isIPBanned() method.
+    public function getIPBan(string $ipAddress){
+        @mkdir($this->dataFolder . "IPBans/" . $folder = explode(".", $ipAddress)[0]);
+        if(file_exists($this->dataFolder . "IBans/" . $folder . "/$ipAddress.yml")){
+            $data = new Config($this->dataFolder . "IBans/" . $folder . "/$ipAddress.yml", Config::YAML);
+            return new Ban(Ban::BAN_TYPE_IP_ADDRESS, $ipAddress, $data->get("expireTime"), $data->get("reason"));
+        }
+        return null;
     }
 
     public function verifyPlayerLogin(Player $player){
-        // TODO: Implement verifyPlayerLogin() method.
+        return $this->getPlayerBan($player->getXuid()) ?? $this->getIPBan($player->getAddress());
     }
 
     public function mutePlayer(string $xuid, int $time = 0, string $reason = null){
-        // TODO: Implement mutePlayer() method.
+        @mkdir($this->dataFolder . "MuterBans/" . $folder = substr($xuid, 0, 2));
+        $data = new Config($this->dataFolder . "MuteBans/" . $folder . "/$xuid.yml", Config::YAML);
+        $data->set("expireTime", $time ? $time + time() : 0);
+        $data->set("reason", $reason);
+        $data->save();
     }
 
     public function unmutePlayer(string $xuid){
-        // TODO: Implement unmutePlayer() method.
+        @unlink($this->dataFolder . "MuteBans/" . substr($xuid, 0, 2) . "/$xuid.yml");
     }
 
-    public function getPlayerMuteBan(string $xuid) : Ban{
-        // TODO: Implement isPlayerMuted() method.
+    public function getPlayerMuteBan(string $xuid){
+        @mkdir($this->dataFolder . "MuteBans/" . $folder = substr($xuid, 0, 2));
+        if(file_exists($this->dataFolder . "MuteBans/" . $folder . "/$xuid.yml")){
+            $data = new Config($this->dataFolder . "MuteBans/" . $folder . "/$xuid.yml", Config::YAML);
+            return new Ban(Ban::BAN_TYPE_PLAYER, $xuid, $data->get("expireTime"), $data->get("reason"));
+        }
+        return null;
     }
 
     public function blockPlayer(string $xuid, int $time = 0, string $reason = null) : int{

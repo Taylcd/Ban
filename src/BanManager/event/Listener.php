@@ -27,7 +27,7 @@ class Listener implements \pocketmine\event\Listener{
             } else {
                 $message .= "\n" . $this->plugin->getMessage("banned.expireTime", date("Y/m/d", $ban->getExpireTime()), date("h:i", $ban->getExpireTime()));
             }
-            if($ban->getReason() !== null){
+            if($ban->getReason() != null){
                 $message .= "\n" . $this->plugin->getMessage("banned.reason", $ban->getReason());
             }
             $this->plugin->getServer()->getPluginManager()->callEvent($ev = new BannedPlayerLoginEvent($event->getPlayer(), $ban));
