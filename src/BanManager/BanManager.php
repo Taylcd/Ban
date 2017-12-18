@@ -11,6 +11,7 @@ use BanManager\provider\DataProvider;
 use BanManager\provider\MySQLDataProvider;
 use BanManager\provider\YAMLDataProvider;
 use pocketmine\plugin\PluginBase;
+use pocketmine\plugin\PluginDescription;
 use pocketmine\utils\Config;
 use BanManager\exception\MessageNotFoundException;
 
@@ -46,6 +47,19 @@ class BanManager extends PluginBase{
             $this->saveDefaultConfig();
             $this->getConfig()->reload();
             $this->getLogger()->notice($this->getMessage("console.configOutdated"));
+        }
+
+        if($this->getConfig()->get("check-update", true)){
+            $this->getLogger()->info($this->getMessage("update.checking"));
+            try{
+                if(($version = (new PluginDescription(file_get_contents("https://raw.githubusercontent.com/Taylcd/BanManager/master/plugin.yml")))->getVersion()) != $this->getDescription()->getVersion()){
+                    $this->getLogger()->notice($this->getMessage("update.newVersion", $version, $this->getDescription()->getWebsite()));
+                } else {
+                    $this->getLogger()->info($this->getMessage("update.upToDate"));
+                }
+            } catch(\Exception $ex) {
+                $this->getLogger()->warning($this->getMessage("update.failed"));
+            }
         }
     }
 

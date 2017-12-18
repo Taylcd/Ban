@@ -1,6 +1,9 @@
 # Don't touch it!
 config-version: 1
 
+# Check for update from Github when loading
+check-update: true
+
 # Supported languages
 # You need to delete message.yml manually after changing language
 # - English(eng)

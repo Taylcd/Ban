@@ -9,17 +9,30 @@ description:
   mutelist: "查看所有禁言玩家"
 usage:
   ban: "/ban <玩家> <时长> [理由]"
+  banIp: "/ban-ip <ip> <时长> [理由]"
+  unban: "/pardon <玩家>"
+  unbanIp: "/pardon-ip <ip>"
 console:
   configOutdated: "配置文件过期并已自动更新，所有设置已被重置为默认选项。原先的配置文件被重命名为 config.old.yml"
   providerNotSupported: "数据库类型 %0 当前不被支持, 默认使用 YAML"
 banned:
-  player: "你的账号已经被封禁。"
-  ipAddress: "你的 IP 地址已经被封禁。"
+  player: "你的账号已被封禁。"
+  ipAddress: "你的 IP 地址已被封禁。"
   noExpire: "这个封禁永久有效。"
   expireTime: "这个封禁将于 %0 %1 过期。"
   reason: "附加理由: %0"
-ban:
+command:
   playerNotFound: "无法找到玩家 %0"
-  banned: "玩家 %0(XboxUID: %1)已被封禁。\n解禁时间: %2(%3 秒后)\n理由: %4"
-  permanent-ban: "永久封禁"
-  none-reason: "无"
+  playerBanned: "玩家 %0(XboxUID: %1) 已被封禁。\n过期时间: %2\n附加理由: %3"
+  permanentBan: "永久有效"
+  noneReason: "无"
+  expireInSeconds: "(%0 秒后)"
+  ipNotValid: "请输入有效的 IP 地址!"
+  ipBanned: "IP %0 已被封禁。\n过期时间: %2\n附加理由: %3"
+  playerUnbanned: "玩家 %0(XboxUID: %1) 的封禁已被解除。"
+  ipUnbanned: "IP %0 的封禁已被解除。"
+update:
+  checking: "检查更新中..."
+  newVersion: "新版本 %0 已发布! 到这里获取: %1"
+  upToDate: "已是最新版本。"
+  failed: "无法检查更新。"
