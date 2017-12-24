@@ -31,6 +31,7 @@ command:
   ipBanned: "IP %0 has been banned.\nExpire Date: %2\nReason: %3"
   playerUnbanned: "Ban of player %0(XboxUID: %1) has been removed."
   ipUnbanned: "Ban of ip %0 has been removed."
+
 update:
   checking: "Checking for update..."
   newVersion: "New version %0 available! Get it here: %1"
