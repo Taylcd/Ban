@@ -34,9 +34,9 @@ class Listener implements \pocketmine\event\Listener{
                 }
                 $event->setKickMessage($message);
                 $event->setCancelled(true);
+                return;
             }
-        } else {
-            $this->plugin->getDataProvider()->processPlayerLogin($event->getPlayer());
         }
+        $this->plugin->getDataProvider()->processPlayerLogin($event->getPlayer());
     }
 }
