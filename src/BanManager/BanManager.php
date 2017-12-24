@@ -46,6 +46,8 @@ class BanManager extends PluginBase{
             rename($this->getDataFolder() . "config.yml", $this->getDataFolder() . "config.old.yml");
             $this->saveDefaultConfig();
             $this->getConfig()->reload();
+
+
             $this->getLogger()->notice($this->getMessage("console.configOutdated"));
         }
 

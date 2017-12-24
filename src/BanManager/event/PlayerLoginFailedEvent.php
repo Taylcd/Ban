@@ -7,7 +7,7 @@ use pocketmine\event\Cancellable;
 use pocketmine\event\player\PlayerEvent;
 use pocketmine\Player;
 
-class BannedPlayerLoginEvent extends PlayerEvent implements Cancellable{
+class PlayerLoginFailedEvent extends PlayerEvent implements Cancellable{
     public static $handlerList = null;
 
     /** @var Ban */
