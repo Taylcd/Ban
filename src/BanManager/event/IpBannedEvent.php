@@ -4,7 +4,7 @@ namespace BanManager\event;
 
 use BanManager\utils\Ban;
 
-class PlayerBannedEvent extends BannedEvent{
+class IpBannedEvent extends BannedEvent{
     public function __construct(Ban $ban){
         parent::__construct($ban);
     }
