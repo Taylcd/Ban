@@ -6,7 +6,7 @@ use BanManager\utils\Ban;
 use pocketmine\event\Cancellable;
 use pocketmine\event\Event;
 
-class BannedEvent extends Event implements Cancellable{
+abstract class BannedEvent extends Event implements Cancellable{
     public static $handlerList = null;
 
     /** @var Ban */
