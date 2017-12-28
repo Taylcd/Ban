@@ -4,8 +4,10 @@ namespace BanManager;
 
 use BanManager\command\BanCommand;
 use BanManager\command\BanIpCommand;
+use BanManager\command\MuteCommand;
 use BanManager\command\UnbanCommand;
 use BanManager\command\UnbanIpCommand;
+use BanManager\command\UnmuteCommand;
 use BanManager\event\Listener;
 use BanManager\provider\DataProvider;
 use BanManager\provider\MySQLDataProvider;
@@ -79,7 +81,9 @@ class BanManager extends PluginBase{
             new BanCommand($this),
             new BanIpCommand($this),
             new UnbanCommand($this),
-            new UnbanIpCommand($this)
+            new UnbanIpCommand($this),
+            new MuteCommand($this),
+            new UnmuteCommand($this)
         ]);
 
         switch(strtolower($provider = $this->getConfig()->get("database-provider", "YAML"))){
