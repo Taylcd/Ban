@@ -4,6 +4,7 @@ namespace BanManager\event;
 
 use BanManager\BanManager;
 use BanManager\utils\Ban;
+use pocketmine\event\player\PlayerChatEvent;
 use pocketmine\event\player\PlayerLoginEvent;
 
 class Listener implements \pocketmine\event\Listener{
@@ -36,6 +37,24 @@ class Listener implements \pocketmine\event\Listener{
                 $event->setCancelled(true);
                 return;
             }
+        }
+        $this->plugin->getDataProvider()->processPlayerLogin($event->getPlayer());
+    }
+
+    public function onPlayerChat(PlayerChatEvent $event){
+        /** @var Ban $ban */
+        if(($ban = $this->plugin->getDataProvider()->getPlayerMuteBan($event->getPlayer()->getXuid())) !== null && !$ban->isExpired()){
+            $message = $this->plugin->getMessage("");
+            if($ban->getExpireTime() === 0){
+                $message .= "\n" . $this->plugin->getMessage("muted.noExpire");
+            } else {
+                $message .= "\n" . $this->plugin->getMessage("muted.expireTime", date("Y/m/d", $ban->getExpireTime()), date("h:i", $ban->getExpireTime()));
+            }
+            if($ban->getReason() != null){
+                $message .= "\n" . $this->plugin->getMessage("muted.reason", $ban->getReason());
+            }
+            $event->setCancelled(true);
+            return;
         }
         $this->plugin->getDataProvider()->processPlayerLogin($event->getPlayer());
     }
