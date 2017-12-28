@@ -44,7 +44,7 @@ class Listener implements \pocketmine\event\Listener{
     public function onPlayerChat(PlayerChatEvent $event){
         /** @var Ban $ban */
         if(($ban = $this->plugin->getDataProvider()->getPlayerMuteBan($event->getPlayer()->getXuid())) !== null && !$ban->isExpired()){
-            $message = $this->plugin->getMessage("");
+            $message = $this->plugin->getMessage("muted.player");
             if($ban->getExpireTime() === 0){
                 $message .= "\n" . $this->plugin->getMessage("muted.noExpire");
             } else {
@@ -53,6 +53,7 @@ class Listener implements \pocketmine\event\Listener{
             if($ban->getReason() != null){
                 $message .= "\n" . $this->plugin->getMessage("muted.reason", $ban->getReason());
             }
+            $event->getPlayer()->sendMessage($message);
             $event->setCancelled(true);
             return;
         }
