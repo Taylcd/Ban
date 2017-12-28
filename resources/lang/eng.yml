@@ -12,13 +12,15 @@ usage:
   banIp: "/ban-ip <ip> <time> [reason]"
   unban: "/pardon <player>"
   unbanIp: "/pardon-ip <ip>"
+  mute: "/mute <player> <time> [reason]"
+  unmute: "/unmute <player>"
 console:
   configOutdated: "Your config file was outdated and has been updated automatically, please note that all settings have been reset to default. Your original config file is renamed to config.old.yml."
   providerNotSupported: "Database provider %0 is currently not supported, using YAML as default."
 banned:
   player: "Your account has been banned."
   ipAddress: "Your IP address has been banned."
-  noExpire: "This ban is permanent."
+  noExpire: "You can no longer use this server."
   expireTime: "This ban will expire on %0 at %1"
   reason: "Reason: %0"
 muted:
@@ -29,13 +31,15 @@ muted:
 command:
   playerNotFound: "Couldn't find player %0"
   playerBanned: "Player %0(XboxUID: %1) has been banned.\nExpire Date: %2\nReason: %3"
-  permanentBan: "This ban is permanent."
-  noneReason: "None"
+  playerMuted: "Player %0(XboxUID: %1) has been muted.\nExpire Date: %2\nReason: %3"
+  playerUnmuted: "Player %0(XboxUID: %1)'s mute has been removed."
+  permanent: "never"
+  none: "None"
   expireInSeconds: "(In %0 seconds)"
   ipNotValid: "Please enter a valid IP address!"
   ipBanned: "IP %0 has been banned.\nExpire Date: %2\nReason: %3"
-  playerUnbanned: "Ban of player %0(XboxUID: %1) has been removed."
-  ipUnbanned: "Ban of ip %0 has been removed."
+  playerUnbanned: "Player %0(XboxUID: %1) has been pardoned."
+  ipUnbanned: "IP address %0 has been pardoned."
 update:
   checking: "Checking for update..."
   newVersion: "New version %0 available! Get it here: %1"
