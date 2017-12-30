@@ -38,7 +38,7 @@ class BanCommand extends Command{
             $sender->sendMessage($this->plugin->getMessage("command.playerNotFound", $name));
         } else {
             $this->plugin->getDataProvider()->banPlayer($xuid, $time = (strtotime(Time::format($time)) - time()), $reason);
-            $sender->sendMessage($this->plugin->getMessage("command.playerBanned", $name, $xuid, $time > 0 ? date("Y/m/d h:i", $time + time()) . $this->plugin->getMessage("command.expireInSeconds", $time) : $this->plugin->getMessage("command.permanentBan"), trim($reason) ? $reason : $this->plugin->getMessage("command.noneReason")));
+            $sender->sendMessage($this->plugin->getMessage("command.playerBanned", $name, $xuid, $time > 0 ? date("Y/m/d h:i", $time + time()) . $this->plugin->getMessage("command.expireInSeconds", $time) : $this->plugin->getMessage("command.permanent"), trim($reason) ? $reason : $this->plugin->getMessage("command.none")));
         }
         return true;
     }

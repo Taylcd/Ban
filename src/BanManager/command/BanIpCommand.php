@@ -38,7 +38,7 @@ class BanIpCommand extends Command{
             $sender->sendMessage($this->plugin->getMessage("command.ipNotValid"));
         } else {
             $this->plugin->getDataProvider()->banIP($ip, $time = (strtotime(Time::format($time)) - time()), $reason);
-            $sender->sendMessage($this->plugin->getMessage("command.ipBanned", $ip, $time > 0 ? date("Y/m/d h:i", $time + time()) . $this->plugin->getMessage("command.expireInSeconds", $time) : $this->plugin->getMessage("command.permanentBan"), trim($reason) ? $reason : $this->plugin->getMessage("command.noneReason")));
+            $sender->sendMessage($this->plugin->getMessage("command.ipBanned", $ip, $time > 0 ? date("Y/m/d h:i", $time + time()) . $this->plugin->getMessage("command.expireInSeconds", $time) : $this->plugin->getMessage("command.permanent"), trim($reason) ? $reason : $this->plugin->getMessage("command.none")));
         }
         return true;
     }

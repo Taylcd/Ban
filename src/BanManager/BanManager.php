@@ -90,7 +90,7 @@ class BanManager extends PluginBase{
             default:
                 $this->getLogger()->notice($this->getMessage("console.providerNotSupported", $provider));
             case "yaml":
-                $this->dataProvider = new YAMLDataProvider($this->getDataFolder() . "/data/");
+                $this->dataProvider = new YAMLDataProvider($this->getDataFolder() . "data/");
                 break;
             // case "mysql":
                 // $this->dataProvider = new MySQLDataProvider();
