@@ -16,10 +16,8 @@ commands:
   ban-ip: ban-ip
   unban: pardon
   unban-ip: pardon-ip
-  banlist: banlist
   mute: mute
   unmute: unmute
-  mutelist: mutelist
   block: block
   block-ip: block-ip
 

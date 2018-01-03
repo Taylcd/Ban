@@ -9,10 +9,6 @@ use pocketmine\utils\Config;
 class YAMLDataProvider implements DataProvider{
     private $dataFolder;
 
-    private $banList = [];
-    private $banIpList = [];
-    private $muteList = [];
-
     public function __construct($dataFolder){
         $this->dataFolder = $dataFolder;
         foreach(["", "PlayerBans", "IPBans", "MuteBans", "XuidData", "PlayerData", "IPData"] as $folder){
@@ -20,8 +16,6 @@ class YAMLDataProvider implements DataProvider{
                 @mkdir($this->dataFolder . $folder);
             }
         }
-
-        // TODO: Load banlists
     }
 
     public function processPlayerLogin(Player $player){
@@ -138,17 +132,5 @@ class YAMLDataProvider implements DataProvider{
         @mkdir($this->dataFolder . "XuidData/" . $name{0});
         $data = new Config($this->dataFolder . "XuidData/" . $name{0} . "/$name.yml", Config::YAML);
         return $data->get("lastVerifiedXuid");
-    }
-
-    public function getBanList(): array{
-        return $this->banList;
-    }
-
-    public function getBanIpList(): array{
-        return $this->banIpList;
-    }
-
-    public function getMuteList(): array{
-        return $this->muteList;
     }
 }
