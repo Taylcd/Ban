@@ -5,8 +5,6 @@ description:
   unbanIp: "Allows the specified IP address to use this server"
   mute: "Prevents the specified player from chatting"
   unmute: "Allows the specified player to chat"
-  banlist: "View all banned players and IP addresses"
-  mutelist: "View all muted players"
 usage:
   ban: "/ban <player> <time> [reason]"
   banIp: "/ban-ip <ip> <time> [reason]"

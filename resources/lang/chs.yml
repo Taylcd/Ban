@@ -5,8 +5,6 @@ description:
   pardonIp: "允许指定 IP 地址使用此服务器"
   mute: "禁止指定玩家发送聊天信息"
   unmute: "允许指定玩家发送聊天信息"
-  banlist: "查看所有封禁的玩家及 IP 地址"
-  mutelist: "查看所有禁言玩家"
 usage:
   ban: "/ban <玩家> <时长> [理由]"
   banIp: "/ban-ip <ip> <时长> [理由]"
